@@ -1,15 +1,14 @@
-
 from setuptools import setup, find_packages
 
 setup(
-    name='python-package-example',
+    name='distancly',
     version='0.1',
     packages=find_packages(exclude=['tests*']),
     license='MIT',
-    description='An example python package',
+    description='A python package to implement all different distance/routing methods (Great Circle/Rhumbline/Haversine/Eucledian).',
     long_description=open('README.txt').read(),
     install_requires=['numpy'],
-    url='https://github.com/BillMills/python-package-example',
-    author='Bill Mills',
-    author_email='myemail@example.com'
+    url='https://github.com/SpyrosMouselinos/distancly',
+    author='Mouselinos Spyridon',
+    author_email='mouselinos.spur.kw@gmail.com'
 )

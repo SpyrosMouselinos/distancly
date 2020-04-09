@@ -1,9 +1,9 @@
-from myPackage import somePython
+from myPackage import azymuth
 
-def test_fahrToKelv():
+def test_fillthis():
     '''
     make sure freezing is calculated correctly
     '''
 
     
-    assert somePython.fahrToKelv(32) == 273.15, 'incorrect freezing point!'
+    return True
