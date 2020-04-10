@@ -1,1 +1,2 @@
-import azymuth
+import rhumbline
+from rhumbline import RhumbLineCalc

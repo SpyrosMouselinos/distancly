@@ -184,42 +184,41 @@ class RhumbLineCalc:
         lon_mid = (540 + lon_mid) % 360 - 180
         return lat_mid, lon_mid
 
-    def loxodromic_power_interpolation(self, point_a, point_b, n_points):
+    def loxodromic_power_interpolation(self, point_a: tuple, point_b: tuple, n_points: int) -> list:
         """
             Returns n_points points between point_a and point_b
-            according to the rhumbline loxodromic interpolation
+            according to the rhumbline loxodromic interpolation,
+            using recursive programming.
+        :param point_a: Start point. Tuple of degrees.
+        :param point_b: End point. Tuple of degrees.
+        :param n_points: Number of midpoints. Needs to be a Power of 2 minus 1.
+        :returns The list of interpolation points from start to end.
         """
         n_points = int(n_points)
         if not math.log2(n_points + 1).is_integer():
             print("N_Points must be an power of 2 minus 1 Number! e.g. 1,3,7,15,...")
-            return
+            return []
 
         lmp = self.loxodromic_mid_point
 
-        # I will try an anadromic_solution
+        # Recursive Solution #
 
-        def solution(a, b, id):
-            if id == 1:
+        def solution(a, b, idx):
+            if idx == 1:
                 return lmp(a, b)
             else:
-                return solution(a, b, 1), solution(a, solution(a, b, 1), (id - 1) / 2), solution(solution(a, b, 1), b,
-                                                                                                 (id - 1) / 2)
+                return solution(a, solution(a, b, 1), (idx - 1) / 2), solution(a, b, 1), solution(solution(a, b, 1), b,
+                                                                                                  (idx - 1) / 2)
 
         points = solution(point_a, point_b, n_points)
-        # decouple points #
+
+        # Decouple points #
+
         decoupled_points = []
-        for idx, triplet in enumerate(points):
-            if idx == 0:
-                singlet = triplet
-                decoupled_points.append(singlet)
-            else:
+        for triplet in points:
+            if len(triplet) > 2:
                 for entry in triplet:
                     decoupled_points.append(entry)
+            else:
+                decoupled_points.append(triplet)
         return decoupled_points
-
-
-if __name__ == '__main__':
-    rl = RhumbLineCalc()
-    print(rl.loxodromic_mid_point(point_a=(25.7976636, -80.1163316), point_b=(38.7134232, -9.1498182)))
-    print(rl.loxodromic_power_interpolation(point_a=(25.7976636, -80.1163316), point_b=(38.7134232, -9.1498182),
-                                            n_points=7))
