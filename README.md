@@ -10,11 +10,13 @@ Rhumb lines are generally longer than great-circle (orthodrome) routes. For inst
 ### Distance Formula ###
 Since a rhumb line is a straight line on a Mercator projec­tion, the distance between two points along a rhumb line is the length of that line (by Pythagoras); but the distor­tion of the projec­tion needs to be compensated for.
 
-On a constant latitude course (travelling east-west), this compensa­tion is simply cosφ; in the general case, it is Δφ/Δψ where Δψ = ln( tan(π/4 + φ2/2) / tan(π/4 + φ1/2) ) (the ‘projected’ latitude difference)
+On a constant latitude course (travelling east-west), this compensa­tion is simply cosφ; in the general case, it is 
 
-Formula:	Δψ = ln( tan(π/4 + φ2/2) / tan(π/4 + φ1/2) )	(‘projected’ latitude difference)
-q = Δφ/Δψ (or cosφ for E-W line)	
-d = √(Δφ² + q²⋅Δλ²) ⋅ R	(Pythagoras)
+$Δφ/Δψ where Δψ = ln( tan(π/4 + φ2/2) / tan(π/4 + φ1/2) )$ (the ‘projected’ latitude difference)
+
+Formula:	$Δψ = ln( tan(π/4 + φ2/2) / tan(π/4 + φ1/2) )$	(‘projected’ latitude difference)
+$q = Δφ/Δψ (or cosφ for E-W line)$
+$d = √(Δφ² + q²⋅Δλ²) ⋅ R	(Pythagoras)$
 where	φ is latitude, λ is longitude, Δλ is taking shortest route (<180°), R is the earth’s radius, ln is natural log
 ***
 ### Bearing Formula ###
